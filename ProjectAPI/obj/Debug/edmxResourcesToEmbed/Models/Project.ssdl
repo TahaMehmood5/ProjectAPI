@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DisciplineCommiteeAssistantModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DisciplineCommiteeAssistantModelStoreContainer">
+    <EntitySet Name="Appeals" EntityType="DisciplineCommiteeAssistantModel.Store.Appeals" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AssignCommittees" EntityType="DisciplineCommiteeAssistantModel.Store.AssignCommittees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AssignPunishments" EntityType="DisciplineCommiteeAssistantModel.Store.AssignPunishments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Attendances" EntityType="DisciplineCommiteeAssistantModel.Store.Attendances" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Cases" EntityType="DisciplineCommiteeAssistantModel.Store.Cases" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Committees" EntityType="DisciplineCommiteeAssistantModel.Store.Committees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Meetings" EntityType="DisciplineCommiteeAssistantModel.Store.Meetings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Punishments" EntityType="DisciplineCommiteeAssistantModel.Store.Punishments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="DisciplineCommiteeAssistantModel.Store.Users" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Appeals">
+    <Key>
+      <PropertyRef Name="a_id" />
+    </Key>
+    <Property Name="a_id" Type="int" Nullable="false" />
+    <Property Name="c_id" Type="int" Nullable="true" />
+    <Property Name="St_comments" Type="varchar(max)" Nullable="true" />
+    <Property Name="Dr_comments" Type="varchar(max)" Nullable="true" />
+    <Property Name="datetime" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="AssignCommittees">
+    <Key>
+      <PropertyRef Name="ac_id" />
+    </Key>
+    <Property Name="ac_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="t_id" Type="int" Nullable="true" />
+    <Property Name="com_id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="AssignPunishments">
+    <Key>
+      <PropertyRef Name="ap_id" />
+    </Key>
+    <Property Name="ap_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="st_id" Type="int" Nullable="true" />
+    <Property Name="com_id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Attendances">
+    <Key>
+      <PropertyRef Name="atd_id" />
+    </Key>
+    <Property Name="atd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="c_id" Type="int" Nullable="true" />
+    <Property Name="datetime" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Cases">
+    <Key>
+      <PropertyRef Name="c_id" />
+    </Key>
+    <Property Name="c_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="t_id" Type="int" Nullable="true" />
+    <Property Name="p_id" Type="int" Nullable="true" />
+    <Property Name="rb_id" Type="int" Nullable="true" />
+    <Property Name="st_id" Type="int" Nullable="true" />
+    <Property Name="datetime" Type="datetime" Nullable="true" />
+    <Property Name="description" Type="varchar(max)" Nullable="true" />
+    <Property Name="image" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="viol_date" Type="datetime" Nullable="true" />
+    <Property Name="com_id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Committees">
+    <Key>
+      <PropertyRef Name="com_id" />
+    </Key>
+    <Property Name="com_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Meetings">
+    <Key>
+      <PropertyRef Name="m_id" />
+    </Key>
+    <Property Name="m_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="c_id" Type="int" Nullable="true" />
+    <Property Name="meetingtime" Type="datetime" Nullable="true" />
+    <Property Name="venue" Type="varchar" Nullable="true" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Punishments">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="isfine" Type="int" Nullable="true" />
+    <Property Name="no_of_days" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="u_id" />
+    </Key>
+    <Property Name="u_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="password" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="name" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="image" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="usertype" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+</Schema>

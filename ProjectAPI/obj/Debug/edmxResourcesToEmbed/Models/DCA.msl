@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DCAModelStoreContainer" CdmEntityContainer="DCAEntities">
+    <EntitySetMapping Name="Appeals">
+      <EntityTypeMapping TypeName="DCAModel.Appeal">
+        <MappingFragment StoreEntitySet="Appeal">
+          <ScalarProperty Name="a_id" ColumnName="a_id" />
+          <ScalarProperty Name="c_id" ColumnName="c_id" />
+          <ScalarProperty Name="St_comments" ColumnName="St_comments" />
+          <ScalarProperty Name="Dr_comments" ColumnName="Dr_comments" />
+          <ScalarProperty Name="datetime" ColumnName="datetime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AssignCommittees">
+      <EntityTypeMapping TypeName="DCAModel.AssignCommittee">
+        <MappingFragment StoreEntitySet="AssignCommittee">
+          <ScalarProperty Name="ac_id" ColumnName="ac_id" />
+          <ScalarProperty Name="t_id" ColumnName="t_id" />
+          <ScalarProperty Name="com_id" ColumnName="com_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AssignPunishments">
+      <EntityTypeMapping TypeName="DCAModel.AssignPunishment">
+        <MappingFragment StoreEntitySet="AssignPunishment">
+          <ScalarProperty Name="ap_id" ColumnName="ap_id" />
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+          <ScalarProperty Name="c_id" ColumnName="c_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Attendances">
+      <EntityTypeMapping TypeName="DCAModel.Attendance">
+        <MappingFragment StoreEntitySet="Attendance">
+          <ScalarProperty Name="atd_id" ColumnName="atd_id" />
+          <ScalarProperty Name="c_id" ColumnName="c_id" />
+          <ScalarProperty Name="datetime" ColumnName="datetime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cases">
+      <EntityTypeMapping TypeName="DCAModel.Case">
+        <MappingFragment StoreEntitySet="Case">
+          <ScalarProperty Name="c_id" ColumnName="c_id" />
+          <ScalarProperty Name="t_id" ColumnName="t_id" />
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+          <ScalarProperty Name="rb_id" ColumnName="rb_id" />
+          <ScalarProperty Name="st_id" ColumnName="st_id" />
+          <ScalarProperty Name="com_id" ColumnName="com_id" />
+          <ScalarProperty Name="datetime" ColumnName="datetime" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="viol_date" ColumnName="viol_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Committees">
+      <EntityTypeMapping TypeName="DCAModel.Committee">
+        <MappingFragment StoreEntitySet="Committee">
+          <ScalarProperty Name="com_id" ColumnName="com_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Meetings">
+      <EntityTypeMapping TypeName="DCAModel.Meeting">
+        <MappingFragment StoreEntitySet="Meeting">
+          <ScalarProperty Name="m_id" ColumnName="m_id" />
+          <ScalarProperty Name="c_id" ColumnName="c_id" />
+          <ScalarProperty Name="meetingtime" ColumnName="meetingtime" />
+          <ScalarProperty Name="vn_id" ColumnName="vn_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P_Type">
+      <EntityTypeMapping TypeName="DCAModel.P_Type">
+        <MappingFragment StoreEntitySet="P_Type">
+          <ScalarProperty Name="pt_id" ColumnName="pt_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Punishments">
+      <EntityTypeMapping TypeName="DCAModel.Punishment">
+        <MappingFragment StoreEntitySet="Punishment">
+          <ScalarProperty Name="p_id" ColumnName="p_id" />
+          <ScalarProperty Name="pt_id" ColumnName="pt_id" />
+          <ScalarProperty Name="f_type" ColumnName="f_type" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="DCAModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="usertype" ColumnName="usertype" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="venues">
+      <EntityTypeMapping TypeName="DCAModel.venue">
+        <MappingFragment StoreEntitySet="venue">
+          <ScalarProperty Name="vn_id" ColumnName="vn_id" />
+          <ScalarProperty Name="v_name" ColumnName="v_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

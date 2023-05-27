@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DCAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Appeal">
+    <Key>
+      <PropertyRef Name="a_id" />
+    </Key>
+    <Property Name="a_id" Type="int" Nullable="false" />
+    <Property Name="c_id" Type="int" />
+    <Property Name="St_comments" Type="varchar(max)" />
+    <Property Name="Dr_comments" Type="varchar(max)" />
+    <Property Name="datetime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AssignCommittee">
+    <Key>
+      <PropertyRef Name="ac_id" />
+    </Key>
+    <Property Name="ac_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="t_id" Type="int" />
+    <Property Name="com_id" Type="int" />
+  </EntityType>
+  <EntityType Name="AssignPunishment">
+    <Key>
+      <PropertyRef Name="ap_id" />
+    </Key>
+    <Property Name="ap_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="p_id" Type="int" />
+    <Property Name="c_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Attendance">
+    <Key>
+      <PropertyRef Name="atd_id" />
+    </Key>
+    <Property Name="atd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="c_id" Type="int" />
+    <Property Name="datetime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Case">
+    <Key>
+      <PropertyRef Name="c_id" />
+    </Key>
+    <Property Name="c_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="t_id" Type="int" />
+    <Property Name="p_id" Type="int" />
+    <Property Name="rb_id" Type="int" />
+    <Property Name="st_id" Type="int" />
+    <Property Name="com_id" Type="int" />
+    <Property Name="datetime" Type="datetime" />
+    <Property Name="description" Type="varchar(max)" />
+    <Property Name="image" Type="varchar" MaxLength="50" />
+    <Property Name="viol_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Committee">
+    <Key>
+      <PropertyRef Name="com_id" />
+    </Key>
+    <Property Name="com_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Meeting">
+    <Key>
+      <PropertyRef Name="m_id" />
+    </Key>
+    <Property Name="m_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="c_id" Type="int" />
+    <Property Name="meetingtime" Type="datetime" />
+    <Property Name="vn_id" Type="int" />
+  </EntityType>
+  <EntityType Name="P_Type">
+    <Key>
+      <PropertyRef Name="pt_id" />
+    </Key>
+    <Property Name="pt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Punishment">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pt_id" Type="int" />
+    <Property Name="f_type" Type="int" />
+    <Property Name="start_date" Type="datetime" />
+    <Property Name="end_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="u_id" />
+    </Key>
+    <Property Name="u_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="image" Type="varchar" MaxLength="50" />
+    <Property Name="usertype" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="venue">
+    <Key>
+      <PropertyRef Name="vn_id" />
+    </Key>
+    <Property Name="vn_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="v_name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="DCAModelStoreContainer">
+    <EntitySet Name="Appeal" EntityType="Self.Appeal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssignCommittee" EntityType="Self.AssignCommittee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssignPunishment" EntityType="Self.AssignPunishment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Case" EntityType="Self.Case" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Committee" EntityType="Self.Committee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Meeting" EntityType="Self.Meeting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="P_Type" EntityType="Self.P_Type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Punishment" EntityType="Self.Punishment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="venue" EntityType="Self.venue" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
