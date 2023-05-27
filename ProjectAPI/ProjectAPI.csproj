@@ -233,6 +233,7 @@
       <DependentUpon>DCA.edmx</DependentUpon>
       <LastGenOutput>DCA.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\DCA.edmx.sql" />
     <Content Include="Models\DCA.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DCA.edmx</DependentUpon>
