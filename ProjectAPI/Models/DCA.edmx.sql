@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/27/2023 21:21:24
--- Generated from EDMX file: E:\ProjectAPI\ProjectAPI\ProjectAPI\Models\DCA.edmx
+-- Date Created: 05/29/2023 10:23:54
+-- Generated from EDMX file: E:\FYP_Api\ProjectAPI\ProjectAPI\Models\DCA.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -138,7 +138,9 @@ CREATE TABLE [dbo].[Punishments] (
     [pt_id] int  NULL,
     [f_type] int  NULL,
     [start_date] datetime  NULL,
-    [end_date] datetime  NULL
+    [end_date] datetime  NULL,
+    [f_amount] int  NULL,
+    [f_status] bit  NULL
 );
 GO
 

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8714a01f4b38454185fabe404c5547a2" Name="Diagram1">
+      <Diagram DiagramId="3549bf0e8e93427db2455d6c6ef3f88f" Name="Diagram1">
         <EntityTypeShape EntityType="DCAModel.Appeal" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DCAModel.AssignCommittee" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DCAModel.AssignPunishment" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
@@ -14,8 +14,8 @@
         <EntityTypeShape EntityType="DCAModel.Meeting" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DCAModel.P_Type" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DCAModel.Punishment" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DCAModel.User" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DCAModel.venue" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DCAModel.User" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DCAModel.venue" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

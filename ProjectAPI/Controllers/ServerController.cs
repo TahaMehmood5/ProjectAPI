@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
 using ProjectAPI.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -9,6 +11,9 @@ using System.Net.Http;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Http;
+using System.Xml.Linq;
+using WebGrease.Activities;
+using static System.Collections.Specialized.BitVector32;
 
 namespace ProjectAPI.Controllers
 {
@@ -29,16 +34,16 @@ namespace ProjectAPI.Controllers
                 {
                     var result = from u in db.Users
                                  where u.username == email && u.password == password
-                                 select new { 
-                                 u.u_id,
-                                 u.name,
-                                 u.username,
-                                 u.usertype,
-                                 u.password,
-                                 u.image,
+                                 select new {
+                                     u.u_id,
+                                     u.name,
+                                     u.username,
+                                     u.usertype,
+                                     u.password,
+                                     u.image,
                                  };
 
-                    return Request.CreateResponse(HttpStatusCode.OK, result.FirstOrDefault());
+                    return Request.CreateResponse(HttpStatusCode.OK, result);
                 }
             }
             catch (Exception ex)
@@ -46,7 +51,7 @@ namespace ProjectAPI.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
-        
+
 
         [HttpGet]
         public HttpResponseMessage GetMembers(string usertype)
@@ -75,7 +80,7 @@ namespace ProjectAPI.Controllers
         {
             try
             {
-               {
+                {
                     HttpRequest request = HttpContext.Current.Request;
 
                     // Create a new Case object
@@ -116,7 +121,7 @@ namespace ProjectAPI.Controllers
                     {
                         c_id = int.Parse(request["c_id"]),
                         vn_id = int.Parse(request["vn_id"]),
-                         meetingtime = DateTime.Parse(request["meetingtime"]),
+                        meetingtime = DateTime.Parse(request["meetingtime"]),
                         //meetingtime = DateTime.Now,
                     };
                     // Add the new Case to the Cases table
@@ -142,8 +147,8 @@ namespace ProjectAPI.Controllers
 
                 var result = db.Committees;
 
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-             
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+
             }
             catch (Exception ex)
             {
@@ -153,7 +158,7 @@ namespace ProjectAPI.Controllers
 
 
         [HttpGet]
-        public HttpResponseMessage GetCases( bool ispunished)
+        public HttpResponseMessage GetCases(bool ispunished)
         {
             try
             {
@@ -223,7 +228,7 @@ namespace ProjectAPI.Controllers
                     db.AssignPunishments.Add(newpunish);
                     // Save changes to the database
                     db.SaveChanges();
-                    return Request.CreateResponse(HttpStatusCode.OK, "New meeting created successfully!");
+                    return Request.CreateResponse(HttpStatusCode.OK, "New Punishment created successfully!");
                 }
             }
             catch (Exception ex)
@@ -233,6 +238,72 @@ namespace ProjectAPI.Controllers
             }
         }
 
+        [HttpPost]
+        public IHttpActionResult AssignPunishment()
+        {
+            try
+            {
+                HttpRequest request = HttpContext.Current.Request;
+
+                int c_id = int.Parse(request["c_id"]);
+                int f_type = int.Parse(request["f_type"]);
+                List<int> pt_ids = request["pt_id"].Split(',').Select(int.Parse).ToList();
+                DateTime startDate = DateTime.Parse(request["start_date"]);
+                DateTime endDate = DateTime.Parse(request["end_date"]);
+                int f_amount = int.Parse(request["f_amount"]);
+
+               
+                {
+                    foreach (int pt_id in pt_ids)
+                    {
+                        // Create Punishment record
+                        Punishment newPunishment = new Punishment
+                        {
+                            pt_id=pt_id,
+                            f_type = f_type,
+                            start_date = startDate,
+                            end_date = endDate
+                        };
+
+                        if (f_type == 1 || f_type == 2)
+                        {
+                            newPunishment.f_amount = f_amount;
+                        }
+
+                        db.Punishments.Add(newPunishment);
+                        db.SaveChanges();
+
+                        int newPunishmentId = newPunishment.p_id;
+
+                        // Assign Punishment to Case
+                        AssignPunishment newAssignPunishment = new AssignPunishment
+                        {
+                            p_id = newPunishmentId,
+                            c_id = c_id
+                        };
+
+                        db.AssignPunishments.Add(newAssignPunishment);
+                        db.SaveChanges();
+                    }
+
+                    return Ok("Punishment record created successfully.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
 
     }
+
+
+
+
+
+
+
+
 }
+

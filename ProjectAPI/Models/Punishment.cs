@@ -19,5 +19,7 @@ namespace ProjectAPI.Models
         public Nullable<int> f_type { get; set; }
         public Nullable<System.DateTime> start_date { get; set; }
         public Nullable<System.DateTime> end_date { get; set; }
+        public Nullable<int> f_amount { get; set; }
+        public Nullable<bool> f_status { get; set; }
     }
 }

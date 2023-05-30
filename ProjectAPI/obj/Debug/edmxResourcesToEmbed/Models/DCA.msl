@@ -89,6 +89,8 @@
           <ScalarProperty Name="f_type" ColumnName="f_type" />
           <ScalarProperty Name="start_date" ColumnName="start_date" />
           <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="f_amount" ColumnName="f_amount" />
+          <ScalarProperty Name="f_status" ColumnName="f_status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

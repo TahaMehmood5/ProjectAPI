@@ -81,6 +81,8 @@
     <Property Name="f_type" Type="Int32" />
     <Property Name="start_date" Type="DateTime" Precision="3" />
     <Property Name="end_date" Type="DateTime" Precision="3" />
+    <Property Name="f_amount" Type="Int32" />
+    <Property Name="f_status" Type="Boolean" />
   </EntityType>
   <EntityType Name="User">
     <Key>

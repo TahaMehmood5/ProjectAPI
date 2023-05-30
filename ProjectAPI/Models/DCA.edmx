@@ -4,121 +4,124 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DCAModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="DCAModelStoreContainer">
-    <EntitySet Name="Appeals" EntityType="DCAModel.Store.Appeals" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="AssignCommittees" EntityType="DCAModel.Store.AssignCommittees" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="AssignPunishments" EntityType="DCAModel.Store.AssignPunishments" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Attendances" EntityType="DCAModel.Store.Attendances" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Cases" EntityType="DCAModel.Store.Cases" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Committees" EntityType="DCAModel.Store.Committees" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Meetings" EntityType="DCAModel.Store.Meetings" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="P_Type" EntityType="DCAModel.Store.P_Type" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Punishments" EntityType="DCAModel.Store.Punishments" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Users" EntityType="DCAModel.Store.Users" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="venues" EntityType="DCAModel.Store.venues" store:Type="Tables" Schema="dbo" />
-  </EntityContainer>
-  <EntityType Name="Appeals">
-    <Key>
-      <PropertyRef Name="a_id" />
-    </Key>
-    <Property Name="a_id" Type="int" Nullable="false" />
-    <Property Name="c_id" Type="int" Nullable="true" />
-    <Property Name="St_comments" Type="varchar(max)" Nullable="true" />
-    <Property Name="Dr_comments" Type="varchar(max)" Nullable="true" />
-    <Property Name="datetime" Type="datetime" Nullable="true" />
-  </EntityType>
-  <EntityType Name="AssignCommittees">
-    <Key>
-      <PropertyRef Name="ac_id" />
-    </Key>
-    <Property Name="ac_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="t_id" Type="int" Nullable="true" />
-    <Property Name="com_id" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="AssignPunishments">
-    <Key>
-      <PropertyRef Name="ap_id" />
-    </Key>
-    <Property Name="ap_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="p_id" Type="int" Nullable="true" />
-    <Property Name="c_id" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Attendances">
-    <Key>
-      <PropertyRef Name="atd_id" />
-    </Key>
-    <Property Name="atd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="c_id" Type="int" Nullable="true" />
-    <Property Name="datetime" Type="datetime" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Cases">
-    <Key>
-      <PropertyRef Name="c_id" />
-    </Key>
-    <Property Name="c_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="t_id" Type="int" Nullable="true" />
-    <Property Name="p_id" Type="int" Nullable="true" />
-    <Property Name="rb_id" Type="int" Nullable="true" />
-    <Property Name="st_id" Type="int" Nullable="true" />
-    <Property Name="com_id" Type="int" Nullable="true" />
-    <Property Name="datetime" Type="datetime" Nullable="true" />
-    <Property Name="description" Type="varchar(max)" Nullable="true" />
-    <Property Name="image" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="viol_date" Type="datetime" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Committees">
-    <Key>
-      <PropertyRef Name="com_id" />
-    </Key>
-    <Property Name="com_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="title" Type="varchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Meetings">
-    <Key>
-      <PropertyRef Name="m_id" />
-    </Key>
-    <Property Name="m_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="c_id" Type="int" Nullable="true" />
-    <Property Name="meetingtime" Type="datetime" Nullable="true" />
-    <Property Name="vn_id" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="P_Type">
-    <Key>
-      <PropertyRef Name="pt_id" />
-    </Key>
-    <Property Name="pt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="title" Type="varchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Punishments">
-    <Key>
-      <PropertyRef Name="p_id" />
-    </Key>
-    <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="pt_id" Type="int" Nullable="true" />
-    <Property Name="f_type" Type="int" Nullable="true" />
-    <Property Name="start_date" Type="datetime" Nullable="true" />
-    <Property Name="end_date" Type="datetime" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Users">
-    <Key>
-      <PropertyRef Name="u_id" />
-    </Key>
-    <Property Name="u_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="username" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="password" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="name" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="image" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="usertype" Type="varchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="venues">
-    <Key>
-      <PropertyRef Name="vn_id" />
-    </Key>
-    <Property Name="vn_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="v_name" Type="varchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-</Schema></edmx:StorageModels>
+      <Schema Namespace="DCAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Appeal">
+          <Key>
+            <PropertyRef Name="a_id" />
+          </Key>
+          <Property Name="a_id" Type="int" Nullable="false" />
+          <Property Name="c_id" Type="int" />
+          <Property Name="St_comments" Type="varchar(max)" />
+          <Property Name="Dr_comments" Type="varchar(max)" />
+          <Property Name="datetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AssignCommittee">
+          <Key>
+            <PropertyRef Name="ac_id" />
+          </Key>
+          <Property Name="ac_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="t_id" Type="int" />
+          <Property Name="com_id" Type="int" />
+        </EntityType>
+        <EntityType Name="AssignPunishment">
+          <Key>
+            <PropertyRef Name="ap_id" />
+          </Key>
+          <Property Name="ap_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="p_id" Type="int" />
+          <Property Name="c_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Attendance">
+          <Key>
+            <PropertyRef Name="atd_id" />
+          </Key>
+          <Property Name="atd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_id" Type="int" />
+          <Property Name="datetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Case">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="t_id" Type="int" />
+          <Property Name="p_id" Type="int" />
+          <Property Name="rb_id" Type="int" />
+          <Property Name="st_id" Type="int" />
+          <Property Name="com_id" Type="int" />
+          <Property Name="datetime" Type="datetime" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="image" Type="varchar" MaxLength="50" />
+          <Property Name="viol_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Committee">
+          <Key>
+            <PropertyRef Name="com_id" />
+          </Key>
+          <Property Name="com_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Meeting">
+          <Key>
+            <PropertyRef Name="m_id" />
+          </Key>
+          <Property Name="m_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_id" Type="int" />
+          <Property Name="meetingtime" Type="datetime" />
+          <Property Name="vn_id" Type="int" />
+        </EntityType>
+        <EntityType Name="P_Type">
+          <Key>
+            <PropertyRef Name="pt_id" />
+          </Key>
+          <Property Name="pt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Punishment">
+          <Key>
+            <PropertyRef Name="p_id" />
+          </Key>
+          <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pt_id" Type="int" />
+          <Property Name="f_type" Type="int" />
+          <Property Name="start_date" Type="datetime" />
+          <Property Name="end_date" Type="datetime" />
+          <Property Name="f_amount" Type="int" />
+          <Property Name="f_status" Type="bit" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="u_id" />
+          </Key>
+          <Property Name="u_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="image" Type="varchar" MaxLength="50" />
+          <Property Name="usertype" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="venue">
+          <Key>
+            <PropertyRef Name="vn_id" />
+          </Key>
+          <Property Name="vn_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="v_name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="DCAModelStoreContainer">
+          <EntitySet Name="Appeal" EntityType="Self.Appeal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssignCommittee" EntityType="Self.AssignCommittee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssignPunishment" EntityType="Self.AssignPunishment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Case" EntityType="Self.Case" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Committee" EntityType="Self.Committee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Meeting" EntityType="Self.Meeting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P_Type" EntityType="Self.P_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Punishment" EntityType="Self.Punishment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="venue" EntityType="Self.venue" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DCAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -203,6 +206,8 @@
           <Property Name="f_type" Type="Int32" />
           <Property Name="start_date" Type="DateTime" Precision="3" />
           <Property Name="end_date" Type="DateTime" Precision="3" />
+          <Property Name="f_amount" Type="Int32" />
+          <Property Name="f_status" Type="Boolean" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -239,121 +244,124 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DCAModelStoreContainer" CdmEntityContainer="DCAEntities">
-    <EntitySetMapping Name="Appeals">
-      <EntityTypeMapping TypeName="IsTypeOf(DCAModel.Appeal)">
-        <MappingFragment StoreEntitySet="Appeals">
-          <ScalarProperty Name="a_id" ColumnName="a_id" />
-          <ScalarProperty Name="c_id" ColumnName="c_id" />
-          <ScalarProperty Name="St_comments" ColumnName="St_comments" />
-          <ScalarProperty Name="Dr_comments" ColumnName="Dr_comments" />
-          <ScalarProperty Name="datetime" ColumnName="datetime" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="AssignCommittees">
-      <EntityTypeMapping TypeName="IsTypeOf(DCAModel.AssignCommittee)">
-        <MappingFragment StoreEntitySet="AssignCommittees">
-          <ScalarProperty Name="ac_id" ColumnName="ac_id" />
-          <ScalarProperty Name="t_id" ColumnName="t_id" />
-          <ScalarProperty Name="com_id" ColumnName="com_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="AssignPunishments">
-      <EntityTypeMapping TypeName="IsTypeOf(DCAModel.AssignPunishment)">
-        <MappingFragment StoreEntitySet="AssignPunishments">
-          <ScalarProperty Name="ap_id" ColumnName="ap_id" />
-          <ScalarProperty Name="p_id" ColumnName="p_id" />
-          <ScalarProperty Name="c_id" ColumnName="c_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Attendances">
-      <EntityTypeMapping TypeName="IsTypeOf(DCAModel.Attendance)">
-        <MappingFragment StoreEntitySet="Attendances">
-          <ScalarProperty Name="atd_id" ColumnName="atd_id" />
-          <ScalarProperty Name="c_id" ColumnName="c_id" />
-          <ScalarProperty Name="datetime" ColumnName="datetime" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Cases">
-      <EntityTypeMapping TypeName="IsTypeOf(DCAModel.Case)">
-        <MappingFragment StoreEntitySet="Cases">
-          <ScalarProperty Name="c_id" ColumnName="c_id" />
-          <ScalarProperty Name="t_id" ColumnName="t_id" />
-          <ScalarProperty Name="p_id" ColumnName="p_id" />
-          <ScalarProperty Name="rb_id" ColumnName="rb_id" />
-          <ScalarProperty Name="st_id" ColumnName="st_id" />
-          <ScalarProperty Name="com_id" ColumnName="com_id" />
-          <ScalarProperty Name="datetime" ColumnName="datetime" />
-          <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="image" ColumnName="image" />
-          <ScalarProperty Name="viol_date" ColumnName="viol_date" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Committees">
-      <EntityTypeMapping TypeName="IsTypeOf(DCAModel.Committee)">
-        <MappingFragment StoreEntitySet="Committees">
-          <ScalarProperty Name="com_id" ColumnName="com_id" />
-          <ScalarProperty Name="title" ColumnName="title" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Meetings">
-      <EntityTypeMapping TypeName="IsTypeOf(DCAModel.Meeting)">
-        <MappingFragment StoreEntitySet="Meetings">
-          <ScalarProperty Name="m_id" ColumnName="m_id" />
-          <ScalarProperty Name="c_id" ColumnName="c_id" />
-          <ScalarProperty Name="meetingtime" ColumnName="meetingtime" />
-          <ScalarProperty Name="vn_id" ColumnName="vn_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="P_Type">
-      <EntityTypeMapping TypeName="IsTypeOf(DCAModel.P_Type)">
-        <MappingFragment StoreEntitySet="P_Type">
-          <ScalarProperty Name="pt_id" ColumnName="pt_id" />
-          <ScalarProperty Name="title" ColumnName="title" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Punishments">
-      <EntityTypeMapping TypeName="IsTypeOf(DCAModel.Punishment)">
-        <MappingFragment StoreEntitySet="Punishments">
-          <ScalarProperty Name="p_id" ColumnName="p_id" />
-          <ScalarProperty Name="pt_id" ColumnName="pt_id" />
-          <ScalarProperty Name="f_type" ColumnName="f_type" />
-          <ScalarProperty Name="start_date" ColumnName="start_date" />
-          <ScalarProperty Name="end_date" ColumnName="end_date" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="IsTypeOf(DCAModel.User)">
-        <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="u_id" ColumnName="u_id" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="image" ColumnName="image" />
-          <ScalarProperty Name="usertype" ColumnName="usertype" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="venues">
-      <EntityTypeMapping TypeName="IsTypeOf(DCAModel.venue)">
-        <MappingFragment StoreEntitySet="venues">
-          <ScalarProperty Name="vn_id" ColumnName="vn_id" />
-          <ScalarProperty Name="v_name" ColumnName="v_name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-  </EntityContainerMapping>
-</Mapping></edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DCAModelStoreContainer" CdmEntityContainer="DCAEntities">
+          <EntitySetMapping Name="Appeals">
+            <EntityTypeMapping TypeName="DCAModel.Appeal">
+              <MappingFragment StoreEntitySet="Appeal">
+                <ScalarProperty Name="a_id" ColumnName="a_id" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="St_comments" ColumnName="St_comments" />
+                <ScalarProperty Name="Dr_comments" ColumnName="Dr_comments" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssignCommittees">
+            <EntityTypeMapping TypeName="DCAModel.AssignCommittee">
+              <MappingFragment StoreEntitySet="AssignCommittee">
+                <ScalarProperty Name="ac_id" ColumnName="ac_id" />
+                <ScalarProperty Name="t_id" ColumnName="t_id" />
+                <ScalarProperty Name="com_id" ColumnName="com_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssignPunishments">
+            <EntityTypeMapping TypeName="DCAModel.AssignPunishment">
+              <MappingFragment StoreEntitySet="AssignPunishment">
+                <ScalarProperty Name="ap_id" ColumnName="ap_id" />
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attendances">
+            <EntityTypeMapping TypeName="DCAModel.Attendance">
+              <MappingFragment StoreEntitySet="Attendance">
+                <ScalarProperty Name="atd_id" ColumnName="atd_id" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cases">
+            <EntityTypeMapping TypeName="DCAModel.Case">
+              <MappingFragment StoreEntitySet="Case">
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="t_id" ColumnName="t_id" />
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="rb_id" ColumnName="rb_id" />
+                <ScalarProperty Name="st_id" ColumnName="st_id" />
+                <ScalarProperty Name="com_id" ColumnName="com_id" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="viol_date" ColumnName="viol_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Committees">
+            <EntityTypeMapping TypeName="DCAModel.Committee">
+              <MappingFragment StoreEntitySet="Committee">
+                <ScalarProperty Name="com_id" ColumnName="com_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Meetings">
+            <EntityTypeMapping TypeName="DCAModel.Meeting">
+              <MappingFragment StoreEntitySet="Meeting">
+                <ScalarProperty Name="m_id" ColumnName="m_id" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="meetingtime" ColumnName="meetingtime" />
+                <ScalarProperty Name="vn_id" ColumnName="vn_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P_Type">
+            <EntityTypeMapping TypeName="DCAModel.P_Type">
+              <MappingFragment StoreEntitySet="P_Type">
+                <ScalarProperty Name="pt_id" ColumnName="pt_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Punishments">
+            <EntityTypeMapping TypeName="DCAModel.Punishment">
+              <MappingFragment StoreEntitySet="Punishment">
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="pt_id" ColumnName="pt_id" />
+                <ScalarProperty Name="f_type" ColumnName="f_type" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="f_amount" ColumnName="f_amount" />
+                <ScalarProperty Name="f_status" ColumnName="f_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DCAModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="usertype" ColumnName="usertype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="venues">
+            <EntityTypeMapping TypeName="DCAModel.venue">
+              <MappingFragment StoreEntitySet="venue">
+                <ScalarProperty Name="vn_id" ColumnName="vn_id" />
+                <ScalarProperty Name="v_name" ColumnName="v_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -367,7 +375,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
