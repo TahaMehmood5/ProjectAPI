@@ -294,7 +294,22 @@ namespace ProjectAPI.Controllers
                 return InternalServerError(ex);
             }
         }
+        [HttpGet]
+        public HttpResponseMessage GetReportedBy(string usertype)
+        {
+            try
+            {
 
+                var result = db.Users.Where(u=>u.usertype==usertype);
+
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
 
     }
 
