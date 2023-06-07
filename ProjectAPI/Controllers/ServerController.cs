@@ -310,15 +310,67 @@ namespace ProjectAPI.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+        [HttpPost]
+        public HttpResponseMessage UpdateuserImage()
+        {
+            try
+            {
+                HttpRequest request = HttpContext.Current.Request;
+                HttpPostedFile imagefile = request.Files["image"];
+
+
+                int id = int.Parse(request["u_id"]);
+                string extension = imagefile.FileName.Split('.')[1];
+                string filename = id + "." + extension;
+                imagefile.SaveAs(HttpContext.Current.Server.
+                               MapPath("~/Images/" + filename));
+                User user = db.Users.Where(x => x.u_id == id).FirstOrDefault();
+                user.image = filename;
+                _ = db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, "Uploaded");
+
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+
+        }
+        [HttpPost]
+        public HttpResponseMessage UploadcaseImage()
+        {
+            try
+            {
+                HttpRequest request = HttpContext.Current.Request;
+                HttpPostedFile imagefile = request.Files["image"];
+
+
+                int id = int.Parse(request["u_id"]);
+                int st_id = int.Parse(request["st_id"]);
+                string extension = imagefile.FileName.Split('.')[1];
+                // DateTime dt = DateTime.Now;
+                string filename = st_id + "." + extension;
+                // filename = filename + DateTime.Now.ToShortTimeString()+"."+extension;
+                imagefile.SaveAs(HttpContext.Current.Server.
+                               MapPath("~/Images/" + filename));
+                Case cas = db.Cases.Where(x => x.st_id == id).FirstOrDefault();
+                cas.image = filename;
+                _ = db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, "Uploaded");
+
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+
+        }
+
+
+
+
+
 
     }
-
-
-
-
-
-
-
-
 }
 
