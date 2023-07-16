@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Results;
 using System.Xml.Linq;
 using WebGrease.Activities;
 using static System.Collections.Specialized.BitVector32;
@@ -139,7 +140,21 @@ namespace ProjectAPI.Controllers
                     }
                     else
                     {
-                        return Request.CreateResponse(HttpStatusCode.OK, user);
+                        var result = from u in db.Users
+                                     join c in db.Cases.Where(c=>c.p_id!=null)
+                                     on u.u_id equals c.st_id into US
+                                     from us in US
+                                     join com in db.Committees
+                                     on us.com_id equals com.com_id
+                                     select new
+                                     {
+                                         us.c_id,
+                                         us.viol_date,
+                                         u.name,
+                                         com.title,
+                                         u.username,
+                                     };
+                        return Request.CreateResponse(HttpStatusCode.OK, result);
                     }
                 }
                 else
@@ -151,8 +166,8 @@ namespace ProjectAPI.Controllers
                     }
                     else
                     {
-                        var result = from u in db.Users 
-                                     join c in db.Cases 
+                        var result = from u in db.Users
+                                     join c in db.Cases.Where(c => c.p_id == null)
                                      on u.u_id equals c.st_id into US
                                      from us in US
                                      join com in db.Committees 
@@ -162,8 +177,8 @@ namespace ProjectAPI.Controllers
                                          us.c_id,
                                          us.viol_date,
                                          u.name,
-
-                                         com.com_id,
+                                         com.title,
+                                         u.username,
                                      };
                         return Request.CreateResponse(HttpStatusCode.OK, result);
                     }
@@ -415,87 +430,137 @@ namespace ProjectAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
         }
     }
-     /*   [HttpGet]
-    public HttpResponseMessage getdata(int type)
+        [HttpPost]
+        public HttpResponseMessage Registerten()
         {
             try
             {
+                HttpRequest request = HttpContext.Current.Request;
+                int user_id = int.Parse(request.Form["st_id"]);
+                var user = db.Users.Find(user_id);
+                var cases = (from c in db.Cases
+                             join u in db.Users on c.st_id equals u.u_id
+                             where u.u_id == user_id
+                             select u.u_id).ToList();
+                int count =int.Parse(cases.Count().ToString());
+                if (count >= 6)
+                {
+                    register10 rg = new register10();
+                        rg.u_id = user_id;
+                    // Add the new Case to the Cases table
+                    db.register10.Add(rg);
+                    // Save changes to the database
+                    db.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, "Alert Register10 student ");
+                }
 
+                return Request.CreateResponse(HttpStatusCode.OK, "p");
             }
             catch (Exception ex)
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
                 throw;
             }
-        }*/
-    /*[HttpPost]
-    public HttpResponseMessage UploadcaseImage()
-    {
-        try
+        }
+        [HttpGet]
+        public HttpResponseMessage GetRegister()
         {
-
-
-            Post post = new Post();
-            HttpRequest request = HttpContext.Current.Request;
-            post.postedBy = request["postedBy"];
-            post.postFor = request["postFor"];
-            post.description = request["description"];
-            post.dateTime = request["dateTime"];
-            post.type = request["type"];
-            post.user = request["user"];
-            post.fromWall = request["fromWall"];
-            if (request["type"] == "image" || request["type"] == "video")
+            try
             {
-                HttpPostedFile imagefile = request.Files["image"];
-                post.text = saveImage(imagefile, post.postedBy, "postImages");
+
+                var cases = (from r in db.register10
+                             join u in db.Users on r.u_id equals u.u_id
+                             where u.u_id == r.u_id
+                             select u).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, cases);
+
             }
-            // if (Request.conte["type"]=="image")
-            db.Posts.Add(post);
-            db.SaveChanges();
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+        /*   [HttpGet]
+       public HttpResponseMessage getdata(int type)
+           {
+               try
+               {
+
+               }
+               catch (Exception ex)
+               {
+                   return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+                   throw;
+               }
+           }*/
+        /*[HttpPost]
+        public HttpResponseMessage UploadcaseImage()
+        {
+            try
+            {
+
+
+                Post post = new Post();
+                HttpRequest request = HttpContext.Current.Request;
+                post.postedBy = request["postedBy"];
+                post.postFor = request["postFor"];
+                post.description = request["description"];
+                post.dateTime = request["dateTime"];
+                post.type = request["type"];
+                post.user = request["user"];
+                post.fromWall = request["fromWall"];
+                if (request["type"] == "image" || request["type"] == "video")
+                {
+                    HttpPostedFile imagefile = request.Files["image"];
+                    post.text = saveImage(imagefile, post.postedBy, "postImages");
+                }
+                // if (Request.conte["type"]=="image")
+                db.Posts.Add(post);
+                db.SaveChanges();
 
 
 
-            HttpRequest request = HttpContext.Current.Request;
-            HttpPostedFile imagefile = request.Files["image"];
+                HttpRequest request = HttpContext.Current.Request;
+                HttpPostedFile imagefile = request.Files["image"];
 
 
-            int id = int.Parse(request["u_id"]);
-            int st_id = int.Parse(request["st_id"]);
+                int id = int.Parse(request["u_id"]);
+                int st_id = int.Parse(request["st_id"]);
+                string extension = imagefile.FileName.Split('.')[1];
+                // DateTime dt = DateTime.Now;
+                string filename = st_id + "." + extension;
+                // filename = filename + DateTime.Now.ToShortTimeString()+"."+extension;
+                imagefile.SaveAs(HttpContext.Current.Server.
+                               MapPath("~/Images/" + filename));
+                Case cas = db.Cases.Where(x => x.st_id == id).FirstOrDefault();
+                cas.image = filename;
+                _ = db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, "Uploaded");
+
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+
+        }
+        public string saveImage(HttpPostedFile imagefile, string id, string file)
+        {
             string extension = imagefile.FileName.Split('.')[1];
-            // DateTime dt = DateTime.Now;
-            string filename = st_id + "." + extension;
+            DateTime dt = DateTime.Now;
+            string filename = id + "_" + dt.Year + dt.Month + dt.Day + dt.Minute + dt.Second + dt.Hour + "." + extension;
             // filename = filename + DateTime.Now.ToShortTimeString()+"."+extension;
             imagefile.SaveAs(HttpContext.Current.Server.
-                           MapPath("~/Images/" + filename));
-            Case cas = db.Cases.Where(x => x.st_id == id).FirstOrDefault();
-            cas.image = filename;
-            _ = db.SaveChanges();
-            return Request.CreateResponse(HttpStatusCode.OK, "Uploaded");
+                           MapPath("~/" + file + "/" + filename));
+            String name = HttpContext.Current.Server.
+                           MapPath("~/" + file + "/" + filename);
+            return filename;
+        }*/
 
-        }
-        catch (Exception ex)
-        {
-            return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
-        }
+
+
+
 
     }
-    public string saveImage(HttpPostedFile imagefile, string id, string file)
-    {
-        string extension = imagefile.FileName.Split('.')[1];
-        DateTime dt = DateTime.Now;
-        string filename = id + "_" + dt.Year + dt.Month + dt.Day + dt.Minute + dt.Second + dt.Hour + "." + extension;
-        // filename = filename + DateTime.Now.ToShortTimeString()+"."+extension;
-        imagefile.SaveAs(HttpContext.Current.Server.
-                       MapPath("~/" + file + "/" + filename));
-        String name = HttpContext.Current.Server.
-                       MapPath("~/" + file + "/" + filename);
-        return filename;
-    }*/
-
-
-
-
-
-}
 }
 

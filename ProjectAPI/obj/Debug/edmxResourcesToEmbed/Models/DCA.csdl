@@ -114,5 +114,13 @@
     <EntitySet Name="Punishments" EntityType="Self.Punishment" />
     <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="venues" EntityType="Self.venue" />
+    <EntitySet Name="register10" EntityType="DCAModel.register10" />
   </EntityContainer>
+  <EntityType Name="register10">
+    <Key>
+      <PropertyRef Name="rt_id" />
+    </Key>
+    <Property Name="rt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="u_id" Type="Int32" />
+  </EntityType>
 </Schema>

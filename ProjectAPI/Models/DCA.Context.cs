@@ -36,5 +36,6 @@ namespace ProjectAPI.Models
         public virtual DbSet<Punishment> Punishments { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<venue> venues { get; set; }
+        public virtual DbSet<register10> register10 { get; set; }
     }
 }

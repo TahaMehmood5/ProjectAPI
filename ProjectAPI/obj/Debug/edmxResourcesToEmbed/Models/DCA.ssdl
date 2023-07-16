@@ -84,6 +84,13 @@
     <Property Name="f_amount" Type="int" />
     <Property Name="f_status" Type="bit" />
   </EntityType>
+  <EntityType Name="register10">
+    <Key>
+      <PropertyRef Name="rt_id" />
+    </Key>
+    <Property Name="rt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="u_id" Type="int" />
+  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="u_id" />
@@ -112,6 +119,7 @@
     <EntitySet Name="Meeting" EntityType="Self.Meeting" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="P_Type" EntityType="Self.P_Type" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Punishment" EntityType="Self.Punishment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="register10" EntityType="Self.register10" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="venue" EntityType="Self.venue" Schema="dbo" store:Type="Tables" />
   </EntityContainer>

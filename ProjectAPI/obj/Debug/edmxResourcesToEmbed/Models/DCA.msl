@@ -114,5 +114,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="register10">
+      <EntityTypeMapping TypeName="DCAModel.register10">
+        <MappingFragment StoreEntitySet="register10">
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="rt_id" ColumnName="rt_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

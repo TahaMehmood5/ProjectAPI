@@ -16,6 +16,7 @@
         <EntityTypeShape EntityType="DCAModel.Punishment" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DCAModel.User" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DCAModel.venue" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DCAModel.register10" Width="1.5" PointX="7.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

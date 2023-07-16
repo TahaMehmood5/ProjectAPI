@@ -212,6 +212,9 @@
     <Compile Include="Models\P_Type.cs">
       <DependentUpon>DCA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\register10.cs">
+      <DependentUpon>DCA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>DCA.tt</DependentUpon>
     </Compile>

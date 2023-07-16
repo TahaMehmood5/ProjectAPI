@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DCAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DCAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Appeal">
           <Key>
             <PropertyRef Name="a_id" />
@@ -89,6 +89,13 @@
           <Property Name="f_amount" Type="int" />
           <Property Name="f_status" Type="bit" />
         </EntityType>
+        <EntityType Name="register10">
+          <Key>
+            <PropertyRef Name="rt_id" />
+          </Key>
+          <Property Name="rt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_id" Type="int" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="u_id" />
@@ -117,11 +124,11 @@
           <EntitySet Name="Meeting" EntityType="Self.Meeting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="P_Type" EntityType="Self.P_Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Punishment" EntityType="Self.Punishment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="register10" EntityType="Self.register10" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="venue" EntityType="Self.venue" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DCAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -239,7 +246,15 @@
           <EntitySet Name="Punishments" EntityType="Self.Punishment" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="venues" EntityType="Self.venue" />
+          <EntitySet Name="register10" EntityType="DCAModel.register10" />
         </EntityContainer>
+        <EntityType Name="register10">
+          <Key>
+            <PropertyRef Name="rt_id" />
+          </Key>
+          <Property Name="rt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_id" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -356,6 +371,14 @@
               <MappingFragment StoreEntitySet="venue">
                 <ScalarProperty Name="vn_id" ColumnName="vn_id" />
                 <ScalarProperty Name="v_name" ColumnName="v_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="register10">
+            <EntityTypeMapping TypeName="DCAModel.register10">
+              <MappingFragment StoreEntitySet="register10">
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="rt_id" ColumnName="rt_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
